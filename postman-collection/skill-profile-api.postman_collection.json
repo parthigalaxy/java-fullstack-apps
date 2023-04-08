@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "b03381bc-2116-43fa-8e5e-6af2c4a3d510",
+		"name": "skill-profile-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "skill-profile-api-add",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"skillProfile\": {\r\n    \"id\": \"fc408d1e-a7e9-4c02-9927-0bc790a20544\",\r\n    \"name\": \"Varun\",\r\n    \"associateId\": \"CTSTest122\",\r\n    \"mobile\": \"9867543210\",\r\n    \"email\": \"varun@gmail.com\",\r\n    \"skillLevals\": [\r\n      {\r\n        \"skill\": \"HTML\",\r\n        \"level\": 20\r\n      },\r\n      {\r\n        \"skill\": \"CSS\",\r\n        \"level\": 3\r\n      },\r\n      {\r\n        \"skill\": \"JS\",\r\n        \"level\": 4\r\n      },\r\n      {\r\n        \"skill\": \"SQL\",\r\n        \"level\": 3\r\n      }\r\n    ],\r\n    \"nonTechnicalSkillLevals\": [\r\n      {\r\n        \"skill\": \"SPOKEN\",\r\n        \"level\": 3\r\n      },\r\n      {\r\n        \"skill\": \"COMMUNICATION\",\r\n        \"level\": 2\r\n      },\r\n      {\r\n        \"skill\": \"APTITUDE\",\r\n        \"level\": 4\r\n      }\r\n    ],\r\n    \"updateTime\": 1669007109883,\r\n    \"updatedBy\": \"Test\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9592/skill-profile-api/profile/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9592",
+					"path": [
+						"skill-profile-api",
+						"profile",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "skill-profile-api-update",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"skillProfile\": {\r\n    \"id\": \"605f6819-2b59-4f4a-93bb-e12c7bbc4cb9\",\r\n    \"name\": \"VarunTest\",\r\n    \"associateId\": \"CTSTest122\",\r\n    \"mobile\": \"9867543210\",\r\n    \"email\": \"varun@gmail.com\",\r\n    \"skillLevals\": [\r\n      {\r\n        \"skill\": \"HTML\",\r\n        \"level\": 20\r\n      },\r\n      {\r\n        \"skill\": \"CSS\",\r\n        \"level\": 20\r\n      },\r\n      {\r\n        \"skill\": \"JS\",\r\n        \"level\": 4\r\n      },\r\n      {\r\n        \"skill\": \"SQL\",\r\n        \"level\": 3\r\n      }\r\n    ],\r\n    \"nonTechnicalSkillLevals\": [\r\n      {\r\n        \"skill\": \"SPOKEN\",\r\n        \"level\": 3\r\n      },\r\n      {\r\n        \"skill\": \"COMMUNICATION\",\r\n        \"level\": 2\r\n      },\r\n      {\r\n        \"skill\": \"APTITUDE\",\r\n        \"level\": 4\r\n      }\r\n    ],\r\n    \"updateTime\": 1669007109883,\r\n    \"updatedBy\": \"Test\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9592/skill-profile-api/profile/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9592",
+					"path": [
+						"skill-profile-api",
+						"profile",
+						"update"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

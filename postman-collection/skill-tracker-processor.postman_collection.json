@@ -1,0 +1,107 @@
+{
+	"info": {
+		"_postman_id": "897473a9-be0f-4a93-af25-7076fff8aa49",
+		"name": "skill-tracker-processor",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "load-csv",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiI0aURhMTVKbjBYcnMyMko3aXZiclBhaWhFUXFkUEI4OCIsInR5cCI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJzdWIiOiJFREczMCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NzY5NzM1NiwiZXhwIjoxNjc3NzgxODAwfQ.GT_RpCdvGzORgQ1ZNdIQMN1RlCtFvTJCKrMonT2l0Kg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/skill-tracker-processor/skill/load/csv",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"skill-tracker-processor",
+						"skill",
+						"load",
+						"csv"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin-search",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiJEbm9BUUR2WVJzMGI0dEtoelRVZVdsMXJVR2tyRHZ1RyIsInR5cCI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJzdWIiOiJFREczMCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NzUyMjgzMiwiZXhwIjoxNjc3NjA5MDAwfQ.DdwmlkhYBLO2RK0yXaCloaZzhMfLre9S5lRaJKSX0yI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/skill-tracker-processor/skill/NAME/ravi/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"skill-tracker-processor",
+						"skill",
+						"NAME",
+						"ravi",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin-search-skill",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJraWQiOiJEbm9BUUR2WVJzMGI0dEtoelRVZVdsMXJVR2tyRHZ1RyIsInR5cCI6IkpXVCIsImFsZyI6IkhTMjU2In0.eyJzdWIiOiJFREczMCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NzUyMjgzMiwiZXhwIjoxNjc3NjA5MDAwfQ.DdwmlkhYBLO2RK0yXaCloaZzhMfLre9S5lRaJKSX0yI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/skill-tracker-processor/skill/SKILL/HTML/0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"skill-tracker-processor",
+						"skill",
+						"SKILL",
+						"HTML",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,163 @@
+
+<mat-card class="search-profile-card">
+    <mat-card-header>
+        <mat-card-title>
+            Search Profile
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="skill-profile-form-field-content"> 
+      <mat-form-field appearance="fill" class="skill-profile-form-field name-form-field"  align="start">
+        <mat-label>Search By</mat-label>
+        <mat-select name="selectedSearchType" [formControl]="selectedSearchType" required>
+          <mat-option *ngFor="let searchType of searchTypes" [value]="searchType.type">
+            {{searchType.view}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="selectedSearchType.invalid">{{getSelectErrorMessage()}}</mat-error>
+      </mat-form-field>
+        <mat-form-field class="skill-profile-form-field name-form-field">
+            <mat-label>Value</mat-label>
+            <input matInput type="text" [formControl]="searchValue" required>
+            <mat-error *ngIf="searchValue.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-flat-button color="primary" class="search-button" (click)="searchProfile()">Search</button>
+    </mat-card-actions>
+</mat-card>
+
+<!-- <mat-card class="search-result-card">
+    <mat-card-content>
+
+          "id",
+    "name",
+    "associateId",
+    "mobile",
+    "email",
+    "skillLevals",
+    "nonTechnicalSkillLevals",
+    "updateTime",
+    "updatedBy"
+
+         -->
+         <div class="example-action-buttons">
+           <button mat-button (click)="accordion.openAll()">Expand All</button>
+           <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+         </div>
+         <mat-divider></mat-divider>
+        <div class="mat-elevation-z8">
+          <mat-accordion class="example-headers-align" multi>
+            <mat-progress-bar *ngIf="isDataLoading" mode="indeterminate"></mat-progress-bar>
+
+            <mat-expansion-panel hideToggle disabled="true">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Name 
+                </mat-panel-title>
+                <mat-panel-description>
+                  Associate Id
+                  <mat-divider></mat-divider>
+                  Email
+                  <mat-divider></mat-divider>
+                  Mobile
+                  <mat-divider></mat-divider>
+                  UpdateTime
+                  <mat-divider></mat-divider>
+                  UpdateBy
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-divider></mat-divider>
+            </mat-expansion-panel>
+            <mat-expansion-panel hideToggle *ngFor="let skillTracker of skillList">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{skillTracker.name}}
+                </mat-panel-title>
+                <mat-panel-description>
+                  {{skillTracker.associateId}} 
+                  <mat-divider></mat-divider>
+                  {{skillTracker.email}}
+                  <mat-divider></mat-divider>
+                  {{skillTracker.mobile}}
+                  <mat-divider></mat-divider>
+                  {{skillTracker.updateTime | date: 'dd-MM-yyyy'}}
+                  <mat-divider></mat-divider>
+                  {{skillTracker.updatedBy}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-divider></mat-divider>
+              <table mat-table [dataSource]="getSkills(skillTracker.skillLevals,0)" class="skill-table">
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+              
+                <!-- Position Column -->
+                <ng-container matColumnDef="skill">
+                  <th mat-header-cell *matHeaderCellDef> Skills </th>
+                  <td mat-cell *matCellDef="let element"> {{element.skill}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="level">
+                  <th mat-header-cell *matHeaderCellDef> Level </th>
+                  <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+                </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+
+              <table mat-table [dataSource]="getSkills(skillTracker.skillLevals, 5)" class="skill-table">
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+              
+                <!-- Position Column -->
+                <ng-container matColumnDef="skill">
+                  <th mat-header-cell *matHeaderCellDef> Skills </th>
+                  <td mat-cell *matCellDef="let element"> {{element.skill}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="level">
+                  <th mat-header-cell *matHeaderCellDef> Level </th>
+                  <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+                </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+
+              <table mat-table [dataSource]="skillTracker.nonTechnicalSkillLevals" class="skill-table">
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+              
+                <!-- Position Column -->
+                <ng-container matColumnDef="skill">
+                  <th mat-header-cell *matHeaderCellDef> Non Technical Skills </th>
+                  <td mat-cell *matCellDef="let element"> {{element.skill}} </td>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="level">
+                  <th mat-header-cell *matHeaderCellDef> Level </th>
+                  <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+                </ng-container>
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+              
+            </mat-expansion-panel>
+          </mat-accordion>
+
+          <mat-paginator #paginator [pageSizeOptions]="pageSizeOptions" [length]="totalRows" [pageIndex]="currentPage" 
+          [pageSize]="pageSize" (page)="pageChanged($event)"  aria-label="Select page of periodic elements">
+          </mat-paginator>
+
+          </div>
+<!-- 
+    </mat-card-content>
+</mat-card> -->
+

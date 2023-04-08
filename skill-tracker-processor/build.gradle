@@ -1,0 +1,114 @@
+plugins {
+	id 'org.springframework.boot' version '3.0.0-M5'
+	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+	id 'java'
+	id 'eclipse'
+	id 'com.github.edeandrea.xjc-generation' version '1.6'
+	id 'com.diffplug.eclipse.apt' version '3.37.2'
+}
+
+group = 'com.skill.tracker.processor'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+ext {
+	set('springCloudVersion', "2022.0.0-M5")
+	jaxbVersion = '2.2.11'
+	mapstructVersion = '1.5.2.Final'
+	lombokVersion = '1.18.22'
+	lombokMapstructBinding = '0.2.0'
+	generatedMapperSourcesDir = "traget/main/generate-src/mapstruct"
+}
+
+dependencies {
+
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-batch'
+	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+	implementation 'org.springframework.kafka:spring-kafka'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    annotationProcessor "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBinding}"
+    
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.11'
+    
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+	
+	implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.11'
+	
+	xjc "javax.xml.bind:jaxb-api:${jaxbVersion}"
+	xjc "com.sun.xml.bind:jaxb-impl:${jaxbVersion}"
+	xjc "com.sun.xml.bind:jaxb-xjc:${jaxbVersion}"
+	xjc "com.sun.xml.bind:jaxb-core:${jaxbVersion}"
+	xjc "javax.activation:activation:1.1.1"
+	
+	implementation group: 'org.hsqldb', name: 'hsqldb', version: '2.3.2'
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.batch:spring-batch-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	
+	testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+	
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+
+xjcGeneration {
+  defaultAdditionalXjcOptions = ['encoding': 'UTF-8']
+  defaultBindingFile = file 'misc/resources/schema/bindings/binding.xjb'
+  
+  schemas {
+
+	   schemas{
+		  schemaRootDir = 'misc/resources/schema/xsd/skill-profile-api/'
+		  schemaFile = 'skill-profile-api.xsd'
+  		  generatedOutputRootDir = file "traget/main/generate-src/jaxb"
+	   }
+	   
+	   schemas{
+		  schemaRootDir = 'misc/resources/schema/xsd/skill-tracker-api/'
+		  schemaFile = 'skill-tracker-api.xsd'
+  		  //generatedOutputRootDir = file "traget/main/generate-src/jaxb"
+	   }
+	   
+  }
+}
+
+compileJava {
+	options.compilerArgs += [
+        '-Amapstruct.suppressGeneratorTimestamp=true',
+        '-Amapstruct.suppressGeneratorVersionInfoComment=true',
+        '-Amapstruct.verbose=true',
+        '-Amapstruct.defaultComponentModel=spring'
+    ]
+	options.annotationProcessorPath = configurations.annotationProcessor
+	options.setAnnotationProcessorGeneratedSourcesDirectory( file("$projectDir/traget/main/generate-src/mapstruct"))
+}
+
+tasks.named('test') {
+	//useJUnitPlatform()
+}

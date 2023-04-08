@@ -1,0 +1,99 @@
+_format_version: "1.1"
+
+services:
+  - name: sill-tracker-api-service
+    #url: http://host.docker.internal:9591/skill-tracker/api/v1/admin/\w+/\w+$
+    host: host.docker.internal
+    port: 9591
+    protocol: http
+    path: /
+    retries: 1
+    routes:
+      - name: sill-tracker-api-route
+        paths:
+          - /skill-tracker/api/v1/engineer/add-profile$
+          - /skill-tracker/api/v1/engineer/update-profile$
+          #- /skill-tracker/api/v1/admin/\w+/\w+/\w+$
+        strip_path: false
+  - name: skill-profile-api-service
+    #url: http://host.docker.internal:9591/skill-profile-api
+    host: host.docker.internal
+    port: 9592
+    protocol: http
+    path: /
+    retries: 1
+    routes:
+      - name: skill-profile-api-route
+        paths:
+          - /skill-profile-api/ping$
+          - /skill-profile-api/profile/add$
+          - /skill-profile-api/profile/update$
+        strip_path: false
+  - name: skill-tracker-processor-service
+    # url: http://host.docker.internal:9593
+    host: host.docker.internal
+    port: 9593
+    protocol: http
+    path: /
+    retries: 1
+    routes:
+      - name: skill-tracker-processor-route
+        paths:
+          - /skill-tracker-processor/skill/load/csv$
+          - /skill-tracker-processor/skill/\w+/\w+/\w+$
+          - /skill-tracker-processor/actuator$
+        strip_path: false
+  - name: skill-tracker-server-service
+    # url: http://host.docker.internal:9593
+    host: host.docker.internal
+    port: 9594
+    protocol: http
+    path: /
+    retries: 1
+    routes:
+      - name: skill-tracker-server-route
+        paths:
+          - /skill-tracker-server/api/v1/user/login$
+          - /skill-tracker-server/actuator$
+        strip_path: false
+
+plugins:
+  - name: rate-limiting
+    service: skill-tracker-processor-service
+    config:
+      minute: 100
+      policy: local
+  - name: jwt
+    service: skill-tracker-processor-service
+    enabled: true
+    config:
+      key_claim_name: kid
+      claims_to_verify:
+      - exp
+  - name: cors
+    service: skill-tracker-server-service
+    config: 
+      origins:
+      - http://localhost:4200
+      - http://*
+      methods:
+      - GET
+      - POST
+      credentials: true
+      max_age: 3600
+  - name: cors
+    service: skill-tracker-processor-service
+    config: 
+      origins:
+      - http://localhost:4200
+      - http://*
+      methods:
+      - GET
+      - POST
+      credentials: true
+      max_age: 3600
+consumers:
+  - username: login_server_issuer
+jwt_secrets:
+  - consumer: login_server_issuer
+    secret: "secret-hash-brown-bear-market-rate-limit"

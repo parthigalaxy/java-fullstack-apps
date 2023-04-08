@@ -1,0 +1,6 @@
+id,name,associateId,mobile,email,skillLevals,nonTechnicalSkillLevals,updateTime,updatedBy
+,Ram,CTSSK001,9865742130,ram@skill.com,1-2|2-3|3-3|4-3|5-2|6-4|7-3|8-4|9-5|10-5,1-3|2-4|3-5,,processor
+,Ravi,CTSSK002,9865742130,ravi@skill.com,1-2|2-3|3-3|4-3|5-2|6-4|7-3|8-4|9-5|10-4,1-3|2-4|3-3,,processor
+,Kavi,CTSSK003,9865742130,kavi@skill.com,1-2|2-3|3-3|4-3|5-2|6-4|7-3|8-4|9-5|10-5,1-3|2-4|3-4,,processor
+,Mano,CTSSK004,9865742130,mano@skill.com,1-2|2-3|3-3|4-3|5-2|6-4|7-3|8-4|9-5|10-3,1-3|2-4|3-5,,processor
+,Bavi,CTSSK005,9865742130,bavi@skill.com,1-2|2-3|3-3|4-3|5-2|6-4|7-3|8-4|9-5|10-2,1-3|2-4|3-3,,processor

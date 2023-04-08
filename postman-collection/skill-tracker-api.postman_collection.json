@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "58f9d6b1-57bd-434f-9ce2-da4cb71262ed",
+		"name": "skill-tracker-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "engineer-add-profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"skillTracker\": {\r\n        \"id\": \"\",\r\n        \"name\": \"Varun\",\r\n        \"associateId\": \"CTSA123459\",\r\n        \"mobile\": \"9867543210\",\r\n        \"email\": \"varun@gmail.com\",\r\n        \"skillLevals\": [\r\n            {\r\n                \"skill\": \"HTML\",\r\n                \"level\": 20\r\n            },\r\n            {\r\n                \"skill\": \"CSS\",\r\n                \"level\": 3\r\n            },\r\n            {\r\n                \"skill\": \"JS\",\r\n                \"level\": 4\r\n            },\r\n            {\r\n                \"skill\": \"SQL\",\r\n                \"level\": 3\r\n            }\r\n        ],\r\n        \"nonTechnicalSkillLevals\": [\r\n            {\r\n                \"skill\": \"SPOKEN\",\r\n                \"level\": 3\r\n            },\r\n            {\r\n                \"skill\": \"COMMUNICATION\",\r\n                \"level\": 2\r\n            },\r\n            {\r\n                \"skill\": \"APTITUDE\",\r\n                \"level\": 4\r\n            }\r\n        ],\r\n        \"updateTime\": 1676187450528,\r\n        \"updatedBy\": \"Test\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/skill-tracker/api/v1/engineer/add-profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"skill-tracker",
+						"api",
+						"v1",
+						"engineer",
+						"add-profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "engineer-update-profile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"skillTracker\": {\r\n        \"id\": \"2ed15ce2-0336-4e1a-9cc9-19cef01706b7\",\r\n        \"name\": \"Varun\",\r\n        \"associateId\": \"CTSA123456\",\r\n        \"mobile\": \"9867543210\",\r\n        \"email\": \"varun@gmail.com\",\r\n        \"skillLevals\": [\r\n            {\r\n                \"skill\": \"HTML\",\r\n                \"level\": 10\r\n            },\r\n            {\r\n                \"skill\": \"CSS\",\r\n                \"level\": 3\r\n            },\r\n            {\r\n                \"skill\": \"JS\",\r\n                \"level\": 4\r\n            },\r\n            {\r\n                \"skill\": \"SQL\",\r\n                \"level\": 3\r\n            }\r\n        ],\r\n        \"nonTechnicalSkillLevals\": [\r\n            {\r\n                \"skill\": \"SPOKEN\",\r\n                \"level\": 3\r\n            },\r\n            {\r\n                \"skill\": \"COMMUNICATION\",\r\n                \"level\": 2\r\n            },\r\n            {\r\n                \"skill\": \"APTITUDE\",\r\n                \"level\": 4\r\n            }\r\n        ],\r\n        \"updateTime\": 1676187450528,\r\n        \"updatedBy\": \"Test\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/skill-tracker/api/v1/engineer/update-profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"skill-tracker",
+						"api",
+						"v1",
+						"engineer",
+						"update-profile"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

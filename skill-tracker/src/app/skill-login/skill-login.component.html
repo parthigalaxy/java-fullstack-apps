@@ -1,0 +1,34 @@
+<div class="skill-login">
+    <mat-card class="skill-login-card">
+        <mat-card-header>
+          <mat-card-title>Login</mat-card-title>
+          <mat-card-subtitle>Skill Portal User Login</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+
+            <mat-error *ngIf="isLoginError">{{errorMessage}}</mat-error>
+          
+            <form [formGroup]="skillLoginForm">
+
+                <mat-form-field class="skill-login-field">
+                    <mat-label>UserName</mat-label>
+                    <input matInput type="text" formControlName="skillUserName" required>
+                    <mat-error *ngIf="skillLoginForm.invalid">{{getUserNameErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="skill-login-field">
+                    <mat-label>Enter your password</mat-label>
+                    <input matInput [type]="hide ? 'password' : 'text'" formControlName="skillUserPassword" required>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="skillLoginForm.invalid">{{getPasswordErrorMessage()}}</mat-error>
+                </mat-form-field>
+
+            </form>
+            
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="onLogin()">LOGIN</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
